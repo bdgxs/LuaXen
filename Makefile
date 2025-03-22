@@ -8,27 +8,27 @@ FILES := $(wildcard $(SRC_DIR)/*) LICENSE README.md CHANGELOG.md Makefile test.s
 all: install
 
 install:
-		@for version in $(LUA_VERSIONS); do \
-				dest=$(LUA_DIR)/$$version/LuaXen; \
-				mkdir -p $$dest; \
-				$(INSTALL) -m 644 $(FILES) $$dest; \
-		done
+	@for version in $(LUA_VERSIONS); do \
+		dest=$(LUA_DIR)/$$version/LuaXen; \
+		mkdir -p $$dest; \
+		install -m 644 $(FILES) $$dest; \
+	done
 
 uninstall:
-		@for version in $(LUA_VERSIONS); do \
-				dest=$(LUA_DIR)/$$version/LuaXen; \
-				if [ -d "$$dest" ]; then \
-						$(RM) -r $$dest; \
-				fi \
-		done
+	@for version in $(LUA_VERSIONS); do \
+		dest=$(LUA_DIR)/$$version/LuaXen; \
+		if [ -d "$$dest" ]; then \
+			$(RM) -r $$dest; \
+		fi \
+	done
 
 test:
-		@./test.sh
+	@./test.sh
 
 help:
-		@echo "Available commands:"
-		@echo " make all       - Install the project"
-		@echo " make install   - Install the project"
-		@echo " make uninstall - Uninstall the project"
-		@echo " make test      - Run tests"
-		@echo " make help      - Show this help"
+	@echo "Available commands:"
+	@echo " make all       - Install the project"
+	@echo " make install   - Install the project"
+	@echo " make uninstall - Uninstall the project"
+	@echo " make test      - Run tests"
+	@echo " make help      - Show this help"
